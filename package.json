@@ -1,0 +1,23 @@
+{
+  "name": "nano_telemetry",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.4.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "cron": "^2.3.1",
+    "dotenv": "^16.3.1",
+    "mongodb": "^5.7.0"
+  }
+}
