@@ -1,4 +1,4 @@
-import { getNodeWeights } from "./rpcs.js";
+import { getNodeWeights, getNonZeroRepresentatives } from "./rpcs.js";
 import { MongoClient } from "mongodb";
 async function getData() {
     let NodeWeightArray = [];
@@ -13,20 +13,35 @@ async function getData() {
     }
     return NodeWeightArray;
 }
-const client = new MongoClient("mongodb://127.0.0.1:27017");
 async function main() {
-    await client.connect();
-    console.log('Connected successfully to server');
-    const dbName = "test";
-    const db = client.db(dbName);
-    const data = await getData();
-    for (const nodeWeight of data) {
-        const collection = db.collection(nodeWeight.address);
-        await collection.insertOne({ weight: nodeWeight.weight, time: nodeWeight.time });
+    const client = new MongoClient("mongodb://127.0.0.1:27017");
+    try {
+        await client.connect();
+        const dbName = "test";
+        const db = client.db(dbName);
+        console.log(`Connected successfully to ${dbName}`);
+        let nodeArray = await getNonZeroRepresentatives();
+        nodeArray = nodeArray.sort((a, b) => b[1] - a[1]);
+        for (const node of nodeArray) {
+            const collection = db.collection("reps");
+            const cursor = collection.find({
+                'address': node[0]
+            });
+            if (await cursor.next() === null) {
+                await collection.insertOne({ address: node[0], telemetry: {}, telemetryArray: [] });
+            }
+            else {
+                await collection.updateOne({ address: node[0] }, { $push: {
+                        telemetryArray: {},
+                        $sort: { date: -1 }
+                    } });
+            }
+        }
+        console.log(`Finished writing to ${dbName}`);
     }
-    return 'done';
+    finally {
+        await client.close();
+    }
 }
 main()
-    .then(console.log)
-    .catch(console.error)
-    .finally(() => setTimeout(() => { client.close(); }, 1000));
+    .catch(console.error);
