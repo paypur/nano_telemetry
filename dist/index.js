@@ -1,8 +1,10 @@
 import { getNodeWeights } from "./rpcs.js";
 import { MongoClient } from "mongodb";
+import { CronJob } from "cron";
+const client = new MongoClient("mongodb://127.0.0.1:27017");
 async function getData() {
     let NodeWeightArray = [];
-    const time = Date.now();
+    const time = new Date().toISOString().split('T')[0];
     const nodesObject = await getNodeWeights();
     for (const address in nodesObject) {
         NodeWeightArray.push({
@@ -13,10 +15,8 @@ async function getData() {
     }
     return NodeWeightArray;
 }
-const client = new MongoClient("mongodb://127.0.0.1:27017");
-async function main() {
+async function writeToDB() {
     await client.connect();
-    console.log('Connected successfully to server');
     const dbName = "test";
     const db = client.db(dbName);
     const data = await getData();
@@ -24,9 +24,9 @@ async function main() {
         const collection = db.collection(nodeWeight.address);
         await collection.insertOne({ weight: nodeWeight.weight, time: nodeWeight.time });
     }
-    return 'done';
+    console.log("Successfully sampled " + data.length + " nodes");
 }
-main()
-    .then(console.log)
+let cronJob = new CronJob("0 12 * * *", () => writeToDB()
     .catch(console.error)
-    .finally(() => setTimeout(() => { client.close(); }, 1000));
+    .finally(() => setTimeout(() => { client.close(); }, 1000)));
+cronJob.start();
