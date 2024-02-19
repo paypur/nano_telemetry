@@ -5,34 +5,16 @@ import { CronJob } from "cron"
 
 const client = new MongoClient("mongodb://127.0.0.1:27017")
 
-async function getData() {
-    let NodeWeightArray: NodeWeight[] = []
-    const time = new Date().toISOString().split('T')[0]
-    const nodesObject = await getNodeWeights()
-    
-    for (const address in nodesObject) {
-        NodeWeightArray.push({
-            address: address,
-            weight: nodesObject[address].weight,
-            time: time,
-        })
-    }
-
-    return NodeWeightArray
-}
-
 async function main() {
-
-    const client = new MongoClient("mongodb://127.0.0.1:27017");
 
     try {
 
-        await client.connect();
+        await client.connect()
         const dbName = "test" 
-        const db = client.db(dbName);
-        const collection = db.collection("reps");
+        const db = client.db(dbName)
+        const collection = db.collection("reps")
         
-        console.log(`Connected successfully to ${dbName}`);
+        console.log(`Connected successfully to ${dbName}`)
     
         // let nodeArray = await getNonZeroRepresentatives()
         // nodeArray = nodeArray.sort((a, b) => b[1] - a[1])
@@ -46,7 +28,7 @@ async function main() {
 
             const telemetry = {
                 bandwidth_cap: node.bandwidth_cap,
-                protocol_version: node.node_id,
+                protocol_version: node.protocol_version,
                 uptime: node.uptime,
                 genesis_block: node.genesis_block,
                 major_version: node.major_version,
@@ -69,25 +51,32 @@ async function main() {
                 account_count: node.account_count,
                 peer_count: node.peer_count,
             }
-
+            
+            // first node appearance
             if (await cursor.next() === null) {
-                await collection.insertOne({ node_id: node.node_id, telemetry: {}, telemetryArray: [] })
+                await collection.insertOne({ 
+                    node_id: node.node_id,
+                    telemetry: telemetry,
+                    telemetryArray: telemetryArray
+                })
             }
+            // previously logged node
             else {
                 await collection.updateOne(
                     { node_id: node.node_id },
                     { $set: {
-                        telemetry: {},
+                        telemetry: telemetry,
                     }}
                 )
                 await collection.updateOne(
                     { node_id: node.node_id },
                     { $push: {
-                        telemetryArray: {},
+                        telemetryArray: telemetryArray,
                         $sort: { date: -1 }
                     }}
                 )
             }
+            console.log(`logged telemetry for ${node.node_id}`)
 
         }
 
@@ -99,11 +88,11 @@ async function main() {
 
 }
 
-const cronJob = new CronJob(
-    "0 12 * * *",
-    () => main()
-        .then(console.log)
+// const cronJob = new CronJob(
+//     "0 12 * * *",
+//     () => )
+// cronJob.start()
+    
+    main()
         .catch(console.error)
         .finally(() => setTimeout(() => {client.close()}, 1000))
-)
-cronJob.start()

@@ -2,6 +2,7 @@ import 'dotenv/config'
 import { NodeTelemetry } from './types.js'
 
 const NODE_RPC = process.env.NODE_IP
+const RAW_TO_NANO = 1e+30
 
 export async function getNodeWeights() {
     const result = await fetch(NODE_RPC!, {
@@ -24,7 +25,6 @@ export async function getNonZeroRepresentatives() {
     })
     const data = await result.json()
 
-    const RAW_TO_NANO = 1e+30
     let repWeightArray: any[][] = []
 
     for (var key in data.representatives) {
