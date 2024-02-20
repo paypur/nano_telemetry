@@ -1,5 +1,4 @@
 export type NodeWeight = {
-    address: string
-    weight: string
-    time: string
+    time: Date
+    rawWeight: string
 }

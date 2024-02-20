@@ -1,45 +1,50 @@
 import { getNodeWeights } from "./rpcs.js"
 import { MongoClient } from "mongodb"
-import { NodeWeight } from "./types.js"
 import { CronJob } from "cron"
+import { NodeWeight } from "./types.js"
 
-const client = new MongoClient("mongodb://127.0.0.1:27017")
 
-async function getData() {
-    let NodeWeightArray: NodeWeight[] = []
-    const time = new Date().toISOString().split('T')[0]
-    const nodesObject = await getNodeWeights()
-    
-    for (const address in nodesObject) {
-        NodeWeightArray.push({
-            address: address,
-            weight: nodesObject[address].weight,
-            time: time,
-        })
-    }
+async function main() {
+    const client = new MongoClient("mongodb://127.0.0.1:27017")
 
-    return NodeWeightArray
-}
-
-async function writeToDB() {
     await client.connect()
-    
-    const dbName = "test" 
-    const db = client.db(dbName)
-    const data = await getData()
+    console.log(`Connected to database`)
 
-    for (const nodeWeight of data) {
-        const collection = db.collection(nodeWeight.address)
-        await collection.insertOne({ weight: nodeWeight.weight, time: nodeWeight.time })
+    const dbName = "nodes"
+    const DB = client.db(dbName)
+
+    const cursor = await DB.listCollections()
+    const known = await cursor.toArray()
+
+    const nodesObject = await getNodeWeights()
+
+    for (const address in nodesObject) {
+        let data = {
+            time: new Date() /*.split('T')[0]*/,
+            rawWeight: nodesObject[address].weight,
+        } as NodeWeight
+
+        if (known.find(c => c.name === address) === undefined) {
+            await DB.createCollection(address, {
+                timeseries: { timeField: "time" }
+            })
+            console.log(`Creating new collection for ${address}`)
+        }
+
+        await DB.collection(address).insertOne(data)
+        console.log(`Sampled ${address}`)
+
     }
 
-    console.log("Successfully sampled " + data.length + " nodes")
+    cursor.close()
+    client.close()
+    console.log(`Sampled ${Object.keys(nodesObject).length} nodes\nDisconnected from database\n Next cronjob scheduled for ${cronJob.nextDate()}`)
 }
 
 let cronJob = new CronJob(
     "0 12 * * *",
-    () => writeToDB()
-        .catch(console.error)
-        .finally(() => setTimeout(() => {client.close()}, 1000))
+    () => main().catch(console.error)
 )
+
 cronJob.start()
+console.log(`Started cronjob scheduled for ${cronJob.nextDate()}`)
