@@ -38,7 +38,7 @@ async function main() {
 
     cursor.close()
     client.close()
-    console.log(`Sampled ${Object.keys(nodesObject).length} nodes\nDisconnected from database\n Next cronjob scheduled for ${cronJob.nextDate()}`)
+    console.log(`Sampled ${Object.keys(nodesObject).length} nodes\nDisconnected from database\nNext cronjob scheduled for ${cronJob.nextDate()}`)
 }
 
 let cronJob = new CronJob(
