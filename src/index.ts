@@ -12,7 +12,7 @@ async function main() {
     const url = process.env.MONGODB_URL!
     const authMechanism = "DEFAULT"
     
-    const client = new MongoClient(`mongodb://${username}:${password}@${url}/?authMechanism=${authMechanism}`)
+    const client = new MongoClient(`mongodb://${username}:${password}@${url}/?authMechanism=${authMechanism}`, { tls: true })
     
     try {
         await client.connect()
