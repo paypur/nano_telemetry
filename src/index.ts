@@ -11,14 +11,15 @@ async function main() {
     const password = encodeURIComponent(process.env.MONGODB_PASS!)
     const url = process.env.MONGODB_URL!
     const authMechanism = "DEFAULT"
+    const database = "nodes"
     
-    const client = new MongoClient(`mongodb://${username}:${password}@${url}/?authMechanism=${authMechanism}`, { tls: true })
+    const client = new MongoClient(`mongodb://${username}:${password}@${url}/?authMechanism=${authMechanism}&authSource=${database}`, { tls: true })
     
     try {
         await client.connect()
         console.log('Connected to database')
 
-        const DB = client.db("nodes")
+        const DB = client.db(database)
 
         const cursor = DB.listCollections()
         const known = await cursor.toArray()
