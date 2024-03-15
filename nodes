@@ -1,0 +1,247 @@
+{
+    "representatives": {
+        "nano_3hn3r6bnnmcy39gu6fgtisgnqh384gmt5mnh71a5xo4cb1d38ps16p8sg5c3": {
+            "weight": "1083595890767729238359899461909884"
+        },
+        "nano_37ortkby6k68z8tkk8g63ndbp8wjbmofhn56oyxb4rm6s3x51pkpiwcnpgmq": {
+            "weight": "480360549027976146366918975152912638"
+        },
+        "nano_3grayknbwtrjdsbdgsjbx4fzds7eufjqghzu6on57aqxte7fhhh14gxbdz61": {
+            "weight": "19095036202468128341719304733588533"
+        },
+        "nano_15gfawgrsc6tkkm5p1gy749tkibchu73st1ojs3knz6rd3ejfcgt7rj5cmx9": {
+            "weight": "3335907837359327750409060502495742"
+        },
+        "nano_3zx7rus19yr5qi5zmkawnzo5ehxr7i73xqghhondhfrzftgstgk4gxbubwfq": {
+            "weight": "1736343219860217059341036783130628"
+        },
+        "nano_1tipnanogsu7q59pnie3qfc4w378wm43fg4ksqc8wmnnfnizrq1xrpt5geho": {
+            "weight": "15451560442527366642516560800652554"
+        },
+        "nano_3robocazheuxet5ju1gtif4cefkhfbupkykc97hfanof859ie9ajpdfhy3ez": {
+            "weight": "2529979049905000645855435557591738"
+        },
+        "nano_1m1afmq54gum53md3dm3o9arctwn8buwqk8kynxszh468qmm3kn7sawmgihz": {
+            "weight": "76500423843910173086603656049982240"
+        },
+        "nano_3strnmn7h9b7oghxa6h9ckrpf5r454fsobpicixps6xwiwc5q4hat7wjbpqz": {
+            "weight": "699250890530634273294085509276698937"
+        },
+        "nano_3kc8wwut3u8g1kwa6x4drkzu346bdbyqzsn14tmabrpeobn8igksfqkzajbb": {
+            "weight": "143696038039118583100334763165507068"
+        },
+        "nano_3bsnis6ha3m9cepuaywskn9jykdggxcu8mxsp76yc3oinrt3n7gi77xiggtm": {
+            "weight": "84338410106882519847260840096437772"
+        },
+        "nano_1bko7zpcow7w6e11az8tnxdnyszgkt61miwuo9i9pom3czdzxqknpiuc7tdb": {
+            "weight": "10233971676270505455683078191447782"
+        },
+        "nano_1ac8snzjkwniynpe3nsshf34iwe46rpjo3tjqtdntktjhqsp5sdndqworgwe": {
+            "weight": "18531079083768432184844825801447895"
+        },
+        "nano_385dyw65hwqtp7pm5igh9ekmaai7qg61tp4mcdine7su3jt69uypa7o9umm8": {
+            "weight": "8913783388844433368685796168078236"
+        },
+        "nano_3ngt59dc7hbsjd1dum1bw9wbb87mbtuj4qkwcruididsb5rhgdt9zb4w7kb9": {
+            "weight": "19347902263766972119731805612023724"
+        },
+        "nano_1awsn43we17c1oshdru4azeqjz9wii41dy8npubm4rg11so7dx3jtqgoeahy": {
+            "weight": "777845149043510540340157256005070201"
+        },
+        "nano_3u7d5iohy14swyhxhgfm9iq4xa9yibhcgnyj697uwhicp14dhx4woik5e9ek": {
+            "weight": "402678335989406520059052833339481478"
+        },
+        "nano_1ookerz3adg5rxc4zwwoshim5yyyihf6dpogjihwwq6ksjpq7ea4fuam5mmc": {
+            "weight": "1177012800954675177248613744680317120"
+        },
+        "nano_1hza3f7wiiqa7ig3jczyxj5yo86yegcmqk3criaz838j91sxcckpfhbhhra1": {
+            "weight": "590190612562542056569217220975651912"
+        },
+        "nano_3oxhohaxp9ceobppkhp7wahauxd4zgyz4fhxfniyp4mb9opq4upfnaccswo7": {
+            "weight": "4201573379402156535934809611421529209"
+        },
+        "nano_15zntj4a8r6bkihei788ciy1jgc5wnskan1gpgn8e8jku3r4qhr7rwifitir": {
+            "weight": "285299426129842762384873514381838441"
+        },
+        "nano_37imps4zk1dfahkqweqa91xpysacb7scqxf3jqhktepeofcxqnpx531b3mnt": {
+            "weight": "14746337269858344797595685649042794722"
+        },
+        "nano_33ad5app7jeo6jfe9ure6zsj8yg7knt6c1zrr5yg79ktfzk5ouhmpn6p5d7p": {
+            "weight": "662425715719887319276512253030200937"
+        },
+        "nano_1isgusmnf1xe45iyjtfxw4qiai36zxdituu7gpni1trtj5ojyujobq13bjah": {
+            "weight": "420534289209251677716663064279956596"
+        },
+        "nano_3kqdiqmqiojr1aqqj51aq8bzz5jtwnkmhb38qwf3ppngo8uhhzkdkn7up7rp": {
+            "weight": "1896194577113698678688720151315138061"
+        },
+        "nano_3patrick68y5btibaujyu7zokw7ctu4onikarddphra6qt688xzrszcg4yuo": {
+            "weight": "1363237740434711937765389362031497045"
+        },
+        "nano_1tk8h3yzkibbsti8upkfa69wqafz6mzfzgu8bu5edaay9k7hidqdunpr4tb6": {
+            "weight": "1538134033510452485945197592200542316"
+        },
+        "nano_375pi67f4i4ag5rudoziza86z715bepsmp1r6ri4domt7ct6tk67mjsxtebm": {
+            "weight": "581443547743337628671949223498612740"
+        },
+        "nano_396sch48s3jmzq1bk31pxxpz64rn7joj38emj4ueypkb9p9mzrym34obze6c": {
+            "weight": "535454357117976348292766188594359770"
+        },
+        "nano_3arg3asgtigae3xckabaaewkx3bzsh7nwz7jkmjos79ihyaxwphhm6qgjps4": {
+            "weight": "6329803738377931987129763331219302788"
+        },
+        "nano_1sw898hgeexgrsq8x16wdadwdrs3obn418z6x98parb5tymz879mu89qndju": {
+            "weight": "135157545159552707827383298977645057"
+        },
+        "nano_34amtofxstsfyqcgphp8piij9u33widykq9wbz6ysjpxhbgmqu8btu1eexer": {
+            "weight": "477381141840573144606762530017952159"
+        },
+        "nano_3n7ky76t4g57o9skjawm8pprooz1bminkbeegsyt694xn6d31c6s744fjzzz": {
+            "weight": "482495369355776215940476756176074667"
+        },
+        "nano_1bj5cf9hkgkcspmn15day8cyn3hyaciufbba4rqmbnkmbdpjdmo9pwyatjoi": {
+            "weight": "371403288129453564328742107324220123"
+        },
+        "nano_1k5fqb5q6t44tsd13ziny66w6mxbya6x397g7tkz7hnkcpppofuojzs7qmik": {
+            "weight": "134850575048708037899730669200010113"
+        },
+        "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis78m": {
+            "weight": "737046002418226528355779065990009231"
+        },
+        "nano_35btiz1mgfwp95c3ckazmzbp5gepduxtijuijd9xebeau8u1gsbea41smjca": {
+            "weight": "1035866659661982720413333000640317457"
+        },
+        "nano_3fg3hi6b4ptj5y5ss4a3cwarbzahaeazzs6mjf18t1cqm3pmetgtgrtafafp": {
+            "weight": "121766786123567890000000000000000000"
+        },
+        "nano_14mp1ua4oi45rxosft3d8qe4g6a1u1srma59jg85ax6s8zuwhi4yzgdnqhz3": {
+            "weight": "137267459312998004311397160323186503"
+        },
+        "nano_1ec5optppmndqsb3rxu1qa4hpo39957s7mfqycpbd547jga4768o6xz8gfie": {
+            "weight": "1260801812839803526558411773685572922"
+        },
+        "nano_15nt4cis8ac184q9mj7bedww9ay9zh5jk5k7sj9ypmz44twjcpz3cn6oijir": {
+            "weight": "595137162398673861035434175842685365"
+        },
+        "nano_3kc9wsf9y4y9r3k9yj1d5da53ytjepcf993bcto17xh1s691wyc6im9xaodr": {
+            "weight": "149975049906500000000000102000000000"
+        },
+        "nano_3g6ue89jij6bxaz3hodne1c7gzgw77xawpdz4p38siu145u3u17c46or4jeu": {
+            "weight": "393939502924534236602281763427583396"
+        },
+        "nano_1gemini56efw4qrfzfcc71cky1wj7a6673fu5ue5afyyz55zb1cxkj8rkr1n": {
+            "weight": "213329197402750860179235861840903091"
+        },
+        "nano_1natrium1o3z5519ifou7xii8crpxpk8y65qmkih8e8bpsjri651oza8imdd": {
+            "weight": "6322521122661721306353269279555663048"
+        },
+        "nano_3o7uzba8b9e1wqu5ziwpruteyrs3scyqr761x7ke6w1xctohxfh5du75qgaj": {
+            "weight": "689424608315794235633745623651419881"
+        },
+        "nano_3i3dqy5xs98ewtk9ejfpxfwbsscejc6njz9hk5ia1446gdkxpxkjeeia719n": {
+            "weight": "241226663452404744962160863787710601"
+        },
+        "nano_1niabkx3gbxit5j5yyqcpas71dkffggbr6zpd3heui8rpoocm5xqbdwq44oh": {
+            "weight": "129454520024388291915931370029237539"
+        },
+        "nano_3abuqtbaotp9myn6ihb6mg96hf7jnapuddydf6ytgd174t4phg86nnq4cmxj": {
+            "weight": "235186516429631852679438114041075598"
+        },
+        "nano_1x7biz69cem95oo7gxkrw6kzhfywq4x5dupw4z1bdzkb74dk9kpxwzjbdhhs": {
+            "weight": "2028242494048978912088915289636815626"
+        },
+        "nano_1fnx59bqpx11s1yn7i5hba3ot5no4ypy971zbkp5wtium3yyafpwhhwkq8fc": {
+            "weight": "376716169063978610599345668744229348"
+        },
+        "nano_1wenanoqm7xbypou7x3nue1isaeddamjdnc3z99tekjbfezdbq8fmb659o7t": {
+            "weight": "1085114676455027948977116683239015414"
+        },
+        "nano_3ktybzzy14zxgb6osbhcc155pwk7osbmf5gbh5fo73bsfu9wuiz54t1uozi1": {
+            "weight": "1548414063245907482196236881577458347"
+        },
+        "nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh": {
+            "weight": "3018582022357531007865127235378416751"
+        },
+        "nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p": {
+            "weight": "728188617122492247398108514815984633"
+        },
+        "nano_3f1owhubic8wa8rfmj5x6w9ore9btbtju5eampghs3y9ere6q6u96jraoo5s": {
+            "weight": "126433206590280550680829715573081249"
+        },
+        "nano_3jwrszth46rk1mu7rmb4rhm54us8yg1gw3ipodftqtikf5yqdyr7471nsg1k": {
+            "weight": "7145478847149808276282241386376226567"
+        },
+        "nano_1oenixj4qtpfcembga9kqwggkb87wooicfy5df8nhdywrjrrqxk7or4gz15b": {
+            "weight": "512309957120774946094607606842417016"
+        },
+        "nano_3msc38fyn67pgio16dj586pdrceahtn75qgnx7fy19wscixrc8dbb3abhbw6": {
+            "weight": "1356526701425260786925322893847432515"
+        },
+        "nano_1zuksmn4e8tjw1ch8m8fbrwy5459bx8645o9euj699rs13qy6ysjhrewioey": {
+            "weight": "904625722406570223247656430801974527"
+        },
+        "nano_34zuxqdsucurhjrmpc4aixzbgaa4wjzz6bn5ryn56emc9tmd3pnxjoxfzyb6": {
+            "weight": "452695218991613838807585629949774781"
+        },
+        "nano_1banexkcfuieufzxksfrxqf6xy8e57ry1zdtq9yn7jntzhpwu4pg4hajojmq": {
+            "weight": "235669577086968333422775316160741183"
+        },
+        "nano_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5": {
+            "weight": "183741962222470159492176385409432781"
+        },
+        "nano_16d45ow3tsj1y3z9n4satwzxgj6qiue1ggxbwbrj3b33qr58bzchkpsffpx4": {
+            "weight": "211925138402102002930222582386066191"
+        },
+        "nano_318uu1tsbios3kp4dts5b6zy1y49uyb88jajfjyxwmozht8unaxeb43keork": {
+            "weight": "587282365680019493198453458623702973"
+        },
+        "nano_3pnanopr3d5g7o45zh3nmdkqpaqxhhp3mw14nzr41smjz8xsrfyhtf9xac77": {
+            "weight": "208764491858944396776151273745850983"
+        },
+        "nano_3tta9pdxr4djdcm6r3c7969syoirj3dunrtynmmi8n1qtxzk9iksoz1gxdrh": {
+            "weight": "341685024455356430125765615128811202"
+        },
+        "nano_1j78msn5omp8jrjge8txwxm4x3smusa1cojg7nuk8fdzoux41fqeeogg5aa1": {
+            "weight": "194317900291567913165951547225712815"
+        },
+        "nano_1wcxcjbwnnsdpee3d9i365e8bcj1uuyoqg9he5zjpt3r57dnjqe3gdc184ck": {
+            "weight": "1525232552459496339865873552310343967"
+        },
+        "nano_1xckpezrhg56nuokqh6t1stjca67h37jmrp9qnejjkfgimx1msm9ehuaieuq": {
+            "weight": "717669948945502057590712787136957766"
+        },
+        "nano_1ota8bpwwawmc8ksdz4ezzrb3afbdeipk1n7rbeguhm4muy1r649uzw5moon": {
+            "weight": "494657584055404959500474766287418262"
+        },
+        "nano_3pg8khw8gs94c1qeq9741n99ubrut8sj3n9kpntim1rm35h4wdzirofazmwt": {
+            "weight": "589917118888119643369995025562005092"
+        },
+        "nano_1my1snode8rwccjxkckjirj65zdxo6g5nhh16fh6sn7hwewxooyyesdsmii3": {
+            "weight": "537717812677506950430866914828324966"
+        },
+        "nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs": {
+            "weight": "2101938222896801047301759629490217569"
+        },
+        "nano_1b9wguhh39at8qtm93oghd6r4f4ubk7zmqc9oi5ape6yyz4s1gamuwn3jjit": {
+            "weight": "9164261114496545278764386340310019225"
+        },
+        "nano_1iuz18n4g4wfp9gf7p1s8qkygxw7wx9qfjq6a9aq68uyrdnningdcjontgar": {
+            "weight": "1189874515940621535794136178950607289"
+        },
+        "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou": {
+            "weight": "2238847922515094933166005638412825032"
+        },
+        "nano_1kd4h9nqaxengni43xy9775gcag8ptw8ddjifnm77qes1efuoqikoqy5sjq3": {
+            "weight": "579472722592654917375253015108399571"
+        },
+        "nano_3zapp5z141qpjipsb1jnjdmk49jwqy58i6u6wnyrh6x7woajeyme85shxewt": {
+            "weight": "622410912557908979816329736700029508"
+        },
+        "nano_1jtx5p8141zjtukz4msp1x93st7nh475f74odj8673qqm96xczmtcnanos1o": {
+            "weight": "977197763607472336868962707693098859"
+        },
+        "nano_3ekb6tp8ixtkibimyygepgkwckzhds9basxd5zfue4efjnxaan77gsnanick": {
+            "weight": "402023888335106300878894021140454348"
+        }
+    }
+}
