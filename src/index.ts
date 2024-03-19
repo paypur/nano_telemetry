@@ -5,16 +5,41 @@ import 'dotenv/config'
 import { CronJob } from "cron"
 import { MongoClient } from "mongodb"
 
+const USERNAME = encodeURIComponent(process.env.MONGODB_USER!)
+const PASSWORD = encodeURIComponent(process.env.MONGODB_PASS!)
+const URL = process.env.MONGODB_URL!
+const AUTH_MECH = "DEFAULT"
+const DATABASE = "nodes"
+
+const client = new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, { tls: true })
+
+async function fill(isoDate: string) {
+    
+    try {
+        await client.connect()
+        console.log('Connected to database')
+
+        const DB = client.db(DATABASE)
+
+        // filter interal mongodb stuff
+        const cursor = DB.listCollections({name: {$not: {$regex: "^system.*" }}})
+        let knownNodes = (await cursor.toArray()).map((collection) => {return collection.name})
+
+        let something = knownNodes.map(async node => {return await DB.collection(node).findOne({time : {$regex: `^${isoDate}.*`}})})
+        console.log(something)
+
+    }
+    catch (error) {
+        console.error(error)
+    }
+    finally {
+        client.close()
+    }
+
+}
+
 async function main() {
 
-    const USERNAME = encodeURIComponent(process.env.MONGODB_USER!)
-    const PASSWORD = encodeURIComponent(process.env.MONGODB_PASS!)
-    const URL = process.env.MONGODB_URL!
-    const AUTH_MECH = "DEFAULT"
-    const DATABASE = "nodes"
-    
-    const client = new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, { tls: true })
-    
     try {
         await client.connect()
         console.log('Connected to database')
@@ -77,5 +102,7 @@ let cronJob = new CronJob(
     () => main()
 )
 
-cronJob.start()
-console.log(`Started cronjob scheduled for ${cronJob.nextDate()}`)
+// cronJob.start()
+// console.log(`Started cronjob scheduled for ${cronJob.nextDate()}`)
+
+fill("2024-03-13")
