@@ -11,10 +11,8 @@ const URL = process.env.MONGODB_URL!
 const AUTH_MECH = "DEFAULT"
 const DATABASE = "nodes"
 
-const client = new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, {tls: true})
-
 async function fill(date: string) {
-
+    const client = new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, {tls: true})
     try {
         const today = new Date(date)
         const tomorrow = new Date(new Date(date).setDate(today.getDate() + 1))
@@ -41,7 +39,7 @@ async function fill(date: string) {
                     extrapolation: true
                 } as NodeWeight)
                 counter++
-                console.log(`Extrapolated date for ${node} on ${date}`)
+                console.log(`Extrapolated data for ${node} on ${date}`)
             }
         }
 
@@ -52,13 +50,12 @@ async function fill(date: string) {
         console.error(error)
     }
     finally {
-        await client.close()
+        setTimeout(async () => await client.close(), 1000)
     }
-
 }
 
 async function main() {
-
+    const client = new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, {tls: true})
     try {
         await client.connect()
         console.log('Connected to database')
@@ -111,7 +108,7 @@ async function main() {
         console.error(error)
     }
     finally {
-        await client.close()
+        setTimeout(async () => await client.close(), 1000)
     }
 
 }
@@ -125,4 +122,4 @@ cronJob.start()
 console.log(`Started cronjob scheduled for ${cronJob.nextDate()}`)
 
 // input validation sucks
-// fill("2024-02-19")
+// await fill("2024-03-11")
