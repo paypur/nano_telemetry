@@ -11,6 +11,44 @@ const URL = process.env.MONGODB_URL!
 const AUTH_MECH = "DEFAULT"
 const DATABASE = "nodes"
 
+async function move(source: MongoClient, destination: MongoClient) {
+    try {
+        await source.connect()
+        console.log('Connected to source DB')
+        const sourceDB = source.db("nodes")
+        
+        await destination.connect()
+        console.log('Connected to destination DB')
+        const destinationDB = source.db("NodeWeights")
+
+        // filter interal mongodb stuff
+        const cursor = sourceDB.listCollections({ name: { $not: { $regex: "^system.*" } } })
+        let knownNodes = (await cursor.toArray()).map((collection) => { return collection.name }).sort()
+
+        let counter = 0
+        for (const node of knownNodes) {
+            const data = await sourceDB.collection(node).find({}).toArray()
+            for (let day of data) {
+                if (day.extrapolation !== undefined) {
+                    // 12 am est
+                    const time = new Date(day.time).setHours(12)
+                    console.log(time)
+                    // destinationDB.collection(node).insertOne({})
+                } else {
+
+                }
+            }
+        }
+    }
+    catch (error) {
+        console.error(error)
+    }
+    finally {
+        setTimeout(() => source.close(), 1000)
+        setTimeout(() => destination.close(), 1000)
+    }
+}
+
 async function fill(date: string) {
     const client = new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, {tls: true})
     try {
@@ -50,7 +88,7 @@ async function fill(date: string) {
         console.error(error)
     }
     finally {
-        setTimeout(async () => await client.close(), 1000)
+        setTimeout(() => client.close(), 1000)
     }
 }
 
@@ -108,7 +146,7 @@ async function main() {
         console.error(error)
     }
     finally {
-        setTimeout(async () => await client.close(), 1000)
+        setTimeout(() => client.close(), 1000)
     }
 
 }
@@ -118,8 +156,11 @@ let cronJob = new CronJob(
     () => main()
 )
 
-cronJob.start()
-console.log(`Started cronjob scheduled for ${cronJob.nextDate()}`)
+// cronJob.start()
+// console.log(`Started cronjob scheduled for ${cronJob.nextDate()}`)
 
 // input validation sucks
 // await fill("2024-03-11")
+
+move(new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, {tls: true}), 
+    new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, {tls: true}))
