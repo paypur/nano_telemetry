@@ -9,36 +9,40 @@ const USERNAME = encodeURIComponent(process.env.MONGODB_USER!)
 const PASSWORD = encodeURIComponent(process.env.MONGODB_PASS!)
 const URL = process.env.MONGODB_URL!
 const AUTH_MECH = "DEFAULT"
-const DATABASE = "nodes"
+const DATABASE = "NodeWeights"
 
 async function move(source: MongoClient, destination: MongoClient) {
     try {
         await source.connect()
-        console.log('Connected to source DB')
         const sourceDB = source.db("nodes")
-        
+        console.log('Connected to source DB')
+
         await destination.connect()
+        const destinationDB = destination.db("NodeWeights")
         console.log('Connected to destination DB')
-        const destinationDB = source.db("NodeWeights")
 
         // filter interal mongodb stuff
         const cursor = sourceDB.listCollections({ name: { $not: { $regex: "^system.*" } } })
         let knownNodes = (await cursor.toArray()).map((collection) => { return collection.name }).sort()
 
         let counter = 0
+        let nodeCounter = 0
         for (const node of knownNodes) {
             const data = await sourceDB.collection(node).find({}).toArray()
             for (let day of data) {
                 if (day.extrapolation !== undefined) {
-                    // 12 am est
-                    const time = new Date(day.time).setHours(12)
-                    console.log(time)
-                    // destinationDB.collection(node).insertOne({})
-                } else {
-
+                    // 12 am pst
+                    day.time = new Date(new Date(day.time).getTime() + 68400000)
                 }
+                counter++
+                destinationDB.collection(node).insertOne(day)
             }
+            nodeCounter++
         }
+
+        console.log(`Copied ${nodeCounter} nodes, ${counter} data points`)
+
+        await cursor.close()
     }
     catch (error) {
         console.error(error)
@@ -50,11 +54,11 @@ async function move(source: MongoClient, destination: MongoClient) {
 }
 
 async function fill(date: string) {
-    const client = new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, {tls: true})
+    const client = new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, { tls: true })
     try {
-        const today = new Date(date)
-        const tomorrow = new Date(new Date(date).setDate(today.getDate() + 1))
-        const yesterday = new Date(new Date(date).setDate(today.getDate() - 1))
+        const today = new Date(new Date(date).getTime() + 68400000)
+        const tomorrow = new Date(new Date(today).setDate(today.getDate() + 1))
+        const yesterday = new Date(new Date(today).setDate(today.getDate() - 1))
 
         await client.connect()
         console.log('Connected to database')
@@ -93,7 +97,7 @@ async function fill(date: string) {
 }
 
 async function main() {
-    const client = new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, {tls: true})
+    const client = new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, { tls: true })
     try {
         await client.connect()
         console.log('Connected to database')
@@ -156,11 +160,11 @@ let cronJob = new CronJob(
     () => main()
 )
 
-// cronJob.start()
-// console.log(`Started cronjob scheduled for ${cronJob.nextDate()}`)
+cronJob.start()
+console.log(`Started cronjob scheduled for ${cronJob.nextDate()}`)
 
 // input validation sucks
-// await fill("2024-03-11")
+// await fill("2024-03-20")
 
-move(new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, {tls: true}), 
-    new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, {tls: true}))
+// move(new MongoClient(`mongodb://${USERNAME}:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=${DATABASE}`, { tls: true }),
+//     new MongoClient(`mongodb://nodeWeightsRW:${PASSWORD}@${URL}/?authMechanism=${AUTH_MECH}&authSource=NodeWeights`, { tls: true }))
