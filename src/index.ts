@@ -137,6 +137,7 @@ async function main() {
             let data = {
                 time: new Date() /*.split('T')[0]*/,
                 rawWeight: await getAccountWeight(address),
+                offline: true
             } as NodeWeight
 
             await DB.collection(address).insertOne(data)
